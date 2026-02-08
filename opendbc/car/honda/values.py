@@ -42,6 +42,9 @@ class CarControllerParams:
 
   def __init__(self, CP):
     self.STEER_MAX = CP.lateralParams.torqueBP[-1]
+    if CP.carFingerprint == CAR.HONDA_CITY_7G:
+      self.STEER_DELTA_UP = 5
+      self.STEER_DELTA_DOWN = 5
     # mirror of list (assuming first item is zero) for interp of signed request
     # values and verify that both arrays begin at zero
     assert CP.lateralParams.torqueBP[0] == 0
@@ -233,7 +236,7 @@ class CAR(Platforms):
   )
   HONDA_CITY_7G = HondaBoschPlatformConfig(
     [HondaCarDocs("Honda City (Brazil only) 2023", "All")],
-    CarSpecs(mass=3125 * CV.LB_TO_KG, wheelbase=2.6, steerRatio=19.0, centerToFrontRatio=0.41, minSteerSpeed=23. * CV.KPH_TO_MS),
+    CarSpecs(mass=3125 * CV.LB_TO_KG, wheelbase=2.6, steerRatio=17.5, centerToFrontRatio=0.41, minSteerSpeed=23. * CV.KPH_TO_MS),
     {Bus.pt: 'honda_bosch_radarless_generated'},
     flags=HondaFlags.BOSCH_RADARLESS,
   )
