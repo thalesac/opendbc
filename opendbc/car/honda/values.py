@@ -42,9 +42,6 @@ class CarControllerParams:
 
   def __init__(self, CP):
     self.STEER_MAX = CP.lateralParams.torqueBP[-1]
-    if CP.carFingerprint == CAR.HONDA_CITY_7G:
-      self.STEER_DELTA_UP = 5
-      self.STEER_DELTA_DOWN = 5
     # mirror of list (assuming first item is zero) for interp of signed request
     # values and verify that both arrays begin at zero
     assert CP.lateralParams.torqueBP[0] == 0

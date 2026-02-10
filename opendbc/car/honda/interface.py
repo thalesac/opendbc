@@ -201,11 +201,8 @@ class CarInterface(CarInterfaceBase):
       CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     elif candidate == CAR.HONDA_CITY_7G:
-      ret.steerActuatorDelay = 0.12
       ret.lateralParams.torqueBP, ret.lateralParams.torqueV = [[0, 4096], [0, 4096]]
-      ret.lateralTuning.pid.kpBP, ret.lateralTuning.pid.kpV = [[0, 10], [0.15, 0.5]]
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kiV = [[0, 10], [0.02, 0.15]]
-      ret.lateralTuning.pid.kf = 0.00018
+      CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     else:
       ret.steerActuatorDelay = 0.15
