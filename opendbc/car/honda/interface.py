@@ -93,9 +93,10 @@ class CarInterface(CarInterfaceBase):
       ret.longitudinalTuning.kiV = [1.2, 0.8, 0.5]
 
     if candidate == CAR.HONDA_CITY_7G:
-      ret.vEgoStopping = 2.0
-      ret.vEgoStarting = ret.vEgoStopping
-      ret.stoppingDecelRate = 0.3
+      ret.vEgoStopping = 3.0        # 10.8 km/h — trigger stopping state in slow traffic
+      ret.vEgoStarting = 2.0        # 7.2 km/h — hysteresis prevents stop↔pid oscillation
+      ret.stoppingDecelRate = 0.8   # match default — 2.7x faster brake ramp (was 0.3)
+      CarControllerParams.BOSCH_GAS_LOOKUP_BP = [-0.05, 2.0]  # lower brake dead zone (was -0.2)
 
     # Disable control if EPS mod detected
     for fw in car_fw:
